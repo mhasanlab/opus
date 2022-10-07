@@ -1,0 +1,75 @@
+﻿@model int_core_test_2.Models.Patient;
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="row mr-5">
+    <div class="col">
+        <div>
+            <h1 class="text-danger">Are you sure you want to Delete?</h1>
+        </div>        
+        <form asp-controller="Home" id="frmcrt" asp-action="Delete" method="post" enctype="multipart/form-data">
+            <input asp-for="PatientId" type="hidden" />
+            <input asp-for="Picture" type="hidden" />
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-3" asp-for="Name"></label>
+                <input class="form-control col-6" asp-for="Name" />
+                <span asp-validation-for="Name" class="text-danger col-3"></span>
+            </div>
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-1" asp-for="Gender"></label>
+                <input type="radio" asp-for="Gender" value="male" />male
+                <input type="radio" asp-for="Gender" value="female" />female
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-3" asp-for="visitDate"></label>
+                <input type="date" class="form-control col-6" asp-for="visitDate" />
+                <span asp-validation-for="visitDate" class="text-danger col-3"></span>
+            </div>
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-3" asp-for="DepartmentId"></label>
+                <select asp-for="DepartmentId" class="form-control col-6" asp-items="@(new SelectList( ViewBag.departments,"DepartmentId","DepartmentName"))">
+                    <option value="0" selected="selected">--Select One--</option>
+                </select>
+
+                <span asp-validation-for="DepartmentId" class="text-danger col-3"></span>
+            </div>
+
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-3" asp-for="Fee"></label>
+                <input type="number" class="form-control col-6" asp-for="Fee" />
+                <span asp-validation-for="Fee" class="text-danger col-3"></span>
+            </div>
+
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-1" asp-for="Isadmitted"></label>
+                <input type="checkbox" asp-for="Isadmitted" />
+                <span asp-validation-for="Isadmitted" class="text-danger col-3"></span>
+            </div>
+
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-1" asp-for="DoctorId"></label>
+                <select asp-for="DoctorId" class="form-control col-6" asp-items="@(new SelectList( ViewBag.doctors,"DoctorId","DoctorName"))">
+                    <option value="0" selected="selected">--Select One--</option>
+                </select>
+
+                <span asp-validation-for="DoctorId" class="text-danger col-3"></span>
+            </div>
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-3" asp-for="Image"></label>
+                <img src="~/Images/@Model.Picture" width="60" height="50" />
+                <input type="file" class="form-control col-6" asp-for="Image" />
+                <span asp-validation-for="Image" class="text-danger col-3"></span>
+            </div>
+            <div class="row mt-1 ">
+                <div class="col-10 offset-2">
+                    <input type="submit" class="btn btn-primary" value="Delete" />
+                    <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Back</a>
+                </div>
+            </div>
+            <div id="panel"></div>
+        </form>
+    </div>
+</div>
+

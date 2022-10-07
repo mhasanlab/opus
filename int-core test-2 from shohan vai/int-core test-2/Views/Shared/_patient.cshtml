@@ -1,0 +1,79 @@
+﻿@model int_core_test_2.Models.Patient
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row mr-5">
+    <div class="col">
+
+        <form id="frmcrt" asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-3" asp-for="Name"></label>
+                <input class="form-control col-6" asp-for="Name" />
+                <span asp-validation-for="Name" class="text-danger col-3"></span>
+            </div>
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-1" asp-for="Gender"></label>
+                <input type="radio" asp-for="Gender" value="male" />male
+                <input type="radio" asp-for="Gender" value="female" />female
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-3" asp-for="visitDate"></label>
+                <input type="date" class="form-control col-6" asp-for="visitDate" />
+                <span asp-validation-for="visitDate" class="text-danger col-3"></span>
+            </div>
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-3" asp-for="DepartmentId"></label>
+                <select asp-for="DepartmentId" class="form-control col-6" asp-items="@(new SelectList( ViewBag.departments,"DepartmentId","DepartmentName"))">
+                    <option value="0" selected="selected">--Select One--</option>
+                </select>
+
+                <span asp-validation-for="DepartmentId" class="text-danger col-3"></span>
+            </div>
+
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-3" asp-for="Fee"></label>
+                <input type="number" class="form-control col-6" asp-for="Fee" />
+                <span asp-validation-for="Fee" class="text-danger col-3"></span>
+            </div>
+
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-1" asp-for="Isadmitted"></label>
+                <input type="checkbox" asp-for="Isadmitted" />
+                <span asp-validation-for="Isadmitted" class="text-danger col-3"></span>
+            </div>
+
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-1" asp-for="DoctorId"></label>
+                <select asp-for="DoctorId" class="form-control col-6" asp-items="@(new SelectList( ViewBag.doctors,"DoctorId","DoctorName"))">
+                    <option value="0" selected="selected">--Select One--</option>
+                </select>
+
+                <span asp-validation-for="DoctorId" class="text-danger col-3"></span>
+            </div>
+            <div class="form-group mb-1 ">
+                <label class="col-form-label col-3" asp-for="Image"></label>
+                <input type="file" class="form-control col-6" asp-for="Image" />
+                <span asp-validation-for="Image" class="text-danger col-3"></span>
+            </div>
+            <div class="row mt-1 ">
+                <div class="col-10 offset-2">
+                    <input type="submit" class="btn btn-primary" value="Save" />
+                    <input type="reset" class="btn btn-warning" value="Reset" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+@section scripts
+{
+
+    @*<script>
+            $("#frmcrt").attr("encytype", "multipart/form-data")
+            function success() {
+                $("#frmcrt").trigger('reset');
+            }
+        </script>*@
+}
